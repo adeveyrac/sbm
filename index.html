@@ -241,6 +241,129 @@
       background: var(--sand);
       clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
+    .hero-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+    .hero-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px; right: -16px; bottom: -16px;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-image-wrap img {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      filter: saturate(0.92) contrast(1.02);
+    }
+    .hero-image-wrap::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(180deg, transparent 60%, rgba(11,31,51,0.25));
+    }
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      border-top: 1px solid rgba(200,169,106,0.3);
+      border-bottom: 1px solid rgba(200,169,106,0.3);
+    }
+    .hero-stat-mini {
+      padding: 20px 16px;
+      text-align: center;
+      border-right: 1px solid rgba(200,169,106,0.2);
+    }
+    .hero-stat-mini:last-child { border-right: none; }
+    .hero-stat-mini .num {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--night);
+      line-height: 1;
+    }
+    .hero-stat-mini .lbl {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    /* Image embeds */
+    .image-wide {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 21 / 9;
+      overflow: hidden;
+      margin-top: 64px;
+    }
+    .image-wide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(0.9);
+    }
+    .image-wide::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(11,31,51,0.05) 0%, rgba(11,31,51,0.35) 100%);
+    }
+    .image-wide .caption {
+      position: absolute;
+      bottom: 28px; left: 32px;
+      z-index: 2;
+      color: var(--off-white);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .image-wide .caption::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 1px;
+      background: var(--gold);
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+
+    .luxe-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      position: relative;
+    }
+    .luxe-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(0.85) brightness(0.92);
+    }
+    .luxe-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(232,223,208,0.4));
+    }
+
+    .final-image {
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto 64px;
+      aspect-ratio: 21 / 8;
+      overflow: hidden;
+      position: relative;
+    }
+    .final-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(0.88);
+    }
     .hero-inner {
       position: relative; z-index: 1;
       display: grid;
@@ -340,74 +463,92 @@
     }
 
     /* ── SOLUTION ── */
-    .solution-layout {
+    .solution-intro {
+      max-width: 720px;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+    .solution-intro .gold-line {
+      margin-left: auto; margin-right: auto;
+    }
+    .solution-flow {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      margin-top: 16px;
     }
-    .benefit-list {
-      list-style: none;
-      margin-top: 40px;
-      display: flex; flex-direction: column; gap: 0;
-    }
-    .benefit-item {
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: 18px;
-      padding: 24px 0;
-      border-bottom: 1px solid rgba(200,169,106,0.2);
-      align-items: start;
-    }
-    .benefit-item:first-child { border-top: 1px solid rgba(200,169,106,0.2); }
-    .benefit-dot {
-      width: 6px; height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      margin-top: 8px;
-    }
-    .benefit-text strong {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--night);
-      margin-bottom: 4px;
-    }
-    .benefit-text span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .solution-aside {
-      padding-top: 80px;
-    }
-    .flow-steps {
-      display: flex; flex-direction: column; gap: 0;
-      margin-top: 40px;
+    .solution-flow::before {
+      content: '';
+      position: absolute;
+      top: 38px; left: 12.5%; right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(200,169,106,0.4) 8%, rgba(200,169,106,0.4) 92%, transparent 100%);
+      z-index: 0;
     }
     .flow-step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 20px;
-      align-items: start;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(11,31,51,0.08);
+      position: relative;
+      padding: 0 24px;
+      text-align: center;
+      z-index: 1;
     }
     .step-num {
+      width: 76px; height: 76px;
+      margin: 0 auto 28px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ivory);
+      border: 1px solid rgba(200,169,106,0.4);
+      border-radius: 50%;
       font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 300;
-      color: rgba(200,169,106,0.5);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--gold);
       line-height: 1;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .flow-step:hover .step-num {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ivory);
     }
     .step-body strong {
       display: block;
-      font-size: 0.875rem;
-      font-weight: 500;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
       color: var(--night);
+      margin-bottom: 12px;
+      line-height: 1.3;
     }
     .step-body span {
-      font-size: 0.8rem;
+      display: block;
+      font-size: 0.85rem;
       color: var(--text-muted);
+      line-height: 1.55;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+    .solution-keyphrase {
+      max-width: 720px;
+      margin: 96px auto 0;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--night);
+      padding-top: 48px;
+      border-top: 1px solid rgba(200,169,106,0.3);
+      position: relative;
+    }
+    .solution-keyphrase::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 50%;
+      transform: translateX(-50%);
+      width: 48px; height: 1px;
+      background: var(--gold);
     }
 
     /* ── LUXE ── */
@@ -427,7 +568,7 @@
       font-size: 0.9rem;
     }
     .luxe-point::before {
-      content: '—';
+      content: '◆';
       color: var(--gold);
       flex-shrink: 0;
       font-family: var(--serif);
@@ -539,7 +680,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: start;
+      align-items: center;
     }
     .included-list {
       list-style: none;
@@ -583,14 +724,8 @@
     .test-cta-box p {
       font-size: 0.875rem;
       color: rgba(255,253,248,0.6);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
       line-height: 1.8;
-    }
-    .test-micro {
-      margin-top: 16px;
-      font-size: 0.72rem;
-      color: rgba(255,253,248,0.4);
-      letter-spacing: 0.06em;
     }
 
     /* ── FINAL ── */
@@ -654,22 +789,17 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-      }
-      #hero::before {
-        width: 100%; height: 40%;
-        top: auto; bottom: 0;
-        clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0% 100%);
-      }
-      .hero-visual {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
+      .hero-inner { grid-template-columns: 1fr; }
+      #hero::before { width: 100%; height: 40%; top: auto; bottom: 0; clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0% 100%); }
+      .hero-visual { flex-direction: row; flex-wrap: wrap; }
       .hero-stat { flex: 1 1 160px; }
       .problem-grid { grid-template-columns: 1fr; gap: 2px; }
-      .solution-layout { grid-template-columns: 1fr; gap: 48px; }
-      .solution-aside { padding-top: 0; }
+      .solution-flow { grid-template-columns: 1fr; gap: 40px; }
+      .solution-flow::before { display: none; }
+      .flow-step { text-align: left; padding: 0; display: grid; grid-template-columns: 60px 1fr; gap: 20px; align-items: start; }
+      .step-num { width: 60px; height: 60px; margin: 0; font-size: 1.2rem; }
+      .step-body span { margin: 0; max-width: none; }
+      .solution-keyphrase { font-size: 1.15rem; margin-top: 64px; }
       .luxe-layout { grid-template-columns: 1fr; gap: 40px; }
       .roi-stats { grid-template-columns: repeat(2, 1fr); }
       .cases-grid { grid-template-columns: 1fr; }
@@ -694,10 +824,10 @@
       <img src="sbm-logo.jpg" id="sbm-logo-img" alt="Monte-Carlo SBM" />
       <span class="nav-logo-label">Agent Vocal IA<span>Hôtellerie & Événementiel</span></span>
     </a>
-   <a href="https://calendly.com/adeveyrac/20min?month=2026-05" class="nav-cta" target="_blank" rel="noopener noreferrer">Test gratuit</a>
+    <a href="https://calendly.com/adeveyrac/20min?month=2026-05" class="nav-cta" target="_blank" rel="noopener noreferrer">Test gratuit</a>
   </nav>
 
-  <!-- ① HERO -->
+  <!-- ◆ HERO -->
   <section id="hero">
     <div class="hero-inner container">
       <div class="hero-content">
@@ -717,23 +847,28 @@
         <p class="hero-micro reveal reveal-delay-4">Sans engagement. Test possible sur une ligne, un hôtel ou un flux d'appels dédié.</p>
       </div>
       <div class="hero-visual">
-        <div class="hero-stat reveal reveal-delay-2">
-          <div class="hero-stat-number">24/7</div>
-          <div class="hero-stat-label">Disponibilité continue</div>
+        <div class="hero-image-wrap reveal reveal-delay-2">
+          <img src="images/hero-hotel-paris.webp" alt="Hôtel de Paris — Monte-Carlo" loading="eager" />
         </div>
-        <div class="hero-stat reveal reveal-delay-3">
-          <div class="hero-stat-number">+40</div>
-          <div class="hero-stat-label">Langues comprises</div>
-        </div>
-        <div class="hero-stat reveal reveal-delay-4">
-          <div class="hero-stat-number">100%</div>
-          <div class="hero-stat-label">Des appels tracés</div>
+        <div class="hero-stats-row reveal reveal-delay-3">
+          <div class="hero-stat-mini">
+            <div class="num">24/7</div>
+            <div class="lbl">Disponibilité</div>
+          </div>
+          <div class="hero-stat-mini">
+            <div class="num">+40</div>
+            <div class="lbl">Langues</div>
+          </div>
+          <div class="hero-stat-mini">
+            <div class="num">100%</div>
+            <div class="lbl">Appels tracés</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ② PROBLÈME -->
+  <!-- PROBLÈME -->
   <section id="probleme" class="section section--white">
     <div class="container">
       <p class="eyebrow reveal">Le défi</p>
@@ -773,94 +908,66 @@
       <div class="key-phrase reveal">
         Une opportunité non suivie n'apparaît dans aucun reporting.
       </div>
-    </div>
-  </section>
 
-  <!-- ③ SOLUTION -->
-  <section id="solution" class="section section--ivory">
-    <div class="container">
-      <div class="solution-layout">
-        <div>
-          <p class="eyebrow reveal">La solution</p>
-          <h2 class="reveal reveal-delay-1" style="max-width:520px;">
-            Un agent vocal IA pour capter, qualifier et prioriser chaque appel.
-          </h2>
-          <div class="gold-line reveal reveal-delay-2"></div>
-          <p class="lead reveal reveal-delay-2">
-            L'agent répond 24/7, comprend les demandes en plusieurs langues, qualifie l'intention du client et transmet un résumé structuré à vos équipes.
-          </p>
-          <ul class="benefit-list">
-            <li class="benefit-item reveal reveal-delay-1">
-              <div class="benefit-dot"></div>
-              <div class="benefit-text">
-                <strong>Réponse immédiate</strong>
-                <span>Même hors horaires ou en période de forte activité</span>
-              </div>
-            </li>
-            <li class="benefit-item reveal reveal-delay-2">
-              <div class="benefit-dot"></div>
-              <div class="benefit-text">
-                <strong>Qualification automatique</strong>
-                <span>Groupe, événement, réservation, information, urgence</span>
-              </div>
-            </li>
-            <li class="benefit-item reveal reveal-delay-3">
-              <div class="benefit-dot"></div>
-              <div class="benefit-text">
-                <strong>Transmission claire</strong>
-                <span>Résumé, coordonnées, intention, niveau de priorité</span>
-              </div>
-            </li>
-            <li class="benefit-item reveal reveal-delay-4">
-              <div class="benefit-dot"></div>
-              <div class="benefit-text">
-                <strong>Suivi des opportunités</strong>
-                <span>Chaque appel devient une donnée exploitable</span>
-              </div>
-            </li>
-          </ul>
-          <div class="key-phrase reveal">
-            L'IA ne remplace pas vos équipes. Elle sécurise les opportunités qu'elles n'ont pas toujours le temps de traiter.
-          </div>
-        </div>
-        <div class="solution-aside">
-          <p style="font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:24px;" class="reveal">Comment ça fonctionne</p>
-          <div class="flow-steps">
-            <div class="flow-step reveal reveal-delay-1">
-              <div class="step-num">01</div>
-              <div class="step-body">
-                <strong>L'appel arrive</strong>
-                <span>À toute heure, sur n'importe quel flux d'appels configuré</span>
-              </div>
-            </div>
-            <div class="flow-step reveal reveal-delay-2">
-              <div class="step-num">02</div>
-              <div class="step-body">
-                <strong>L'agent accueille et qualifie</strong>
-                <span>Ton sobre, multilingue, adapté à votre positionnement</span>
-              </div>
-            </div>
-            <div class="flow-step reveal reveal-delay-3">
-              <div class="step-num">03</div>
-              <div class="step-body">
-                <strong>Résumé transmis</strong>
-                <span>Coordonnées, intention, priorité — au bon interlocuteur</span>
-              </div>
-            </div>
-            <div class="flow-step reveal reveal-delay-4">
-              <div class="step-num">04</div>
-              <div class="step-body">
-                <strong>Données analysées</strong>
-                <span>Chaque appel enrichit le suivi des opportunités commerciales</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="image-wide reveal">
+        <img src="images/defi-suite-celebration.webp" alt="Suite Diamond Garnier — Hôtel de Paris, Monte-Carlo" loading="lazy" />
+        <span class="caption">Hôtel de Paris, Monte-Carlo — chaque instant client mérite la même excellence</span>
       </div>
     </div>
   </section>
 
-  <!-- ④ LUXE / EXPÉRIENCE CLIENT -->
+  <!-- SOLUTION -->
+  <section id="solution" class="section section--ivory">
+    <div class="container">
+      <div class="solution-intro">
+        <p class="eyebrow reveal">La solution</p>
+        <h2 class="reveal reveal-delay-1">
+          Un agent vocal IA<br>pour capter, qualifier et prioriser chaque appel.
+        </h2>
+        <div class="gold-line reveal reveal-delay-2"></div>
+        <p class="lead reveal reveal-delay-2">
+          L'agent répond 24/7, comprend les demandes en plusieurs langues, qualifie l'intention du client et transmet un résumé structuré à vos équipes.
+        </p>
+      </div>
+
+      <div class="solution-flow">
+        <div class="flow-step reveal reveal-delay-1">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <strong>L'appel arrive</strong>
+            <span>À toute heure, sur n'importe quel flux d'appels configuré</span>
+          </div>
+        </div>
+        <div class="flow-step reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <strong>L'agent accueille et qualifie</strong>
+            <span>Ton sobre, multilingue, adapté à votre positionnement</span>
+          </div>
+        </div>
+        <div class="flow-step reveal reveal-delay-3">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <strong>Résumé transmis</strong>
+            <span>Coordonnées, intention, priorité — au bon interlocuteur</span>
+          </div>
+        </div>
+        <div class="flow-step reveal reveal-delay-4">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <strong>Données analysées</strong>
+            <span>Chaque appel enrichit le suivi des opportunités commerciales</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="solution-keyphrase reveal">
+        L'IA ne remplace pas vos équipes.<br>Elle sécurise les opportunités qu'elles n'ont pas toujours le temps de traiter.
+      </p>
+    </div>
+  </section>
+
+  <!-- LUXE / EXPÉRIENCE CLIENT -->
   <section id="luxe" class="section section--sand">
     <div class="container">
       <div class="luxe-layout">
@@ -881,15 +988,14 @@
             <li class="luxe-point reveal reveal-delay-5">Adaptable à votre organisation interne</li>
           </ul>
         </div>
-        <div class="luxe-callout reveal reveal-delay-2">
-          <p>La technologie la plus efficace est celle que le client ne perçoit pas. Elle agit en coulisses, pour que l'équipe puisse être pleinement présente en salle.</p>
-          <cite>Philosophie d'intégration</cite>
+        <div class="luxe-image reveal reveal-delay-2">
+          <img src="https://asset.montecarlosbm.com/styles/editorial_block_image_text_2x_webp/s3/media/image/thermes-marins-monte-carlo-pole-sucre-offre-kids-atelier-patisserie-2024-003.jpg.webp?itok=GtIq2n9X" alt="Expérience client — Monte-Carlo SBM" loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ⑤ BUSINESS / ROI -->
+  <!-- BUSINESS / ROI -->
   <section id="roi" class="section section--night">
     <div class="container">
       <p class="eyebrow eyebrow--light reveal">Performance & mesure</p>
@@ -926,7 +1032,7 @@
     </div>
   </section>
 
-  <!-- ⑥ CAS D'USAGE -->
+  <!-- CAS D'USAGE -->
   <section id="cas" class="section section--white">
     <div class="container">
       <p class="eyebrow reveal">Applications</p>
@@ -970,7 +1076,7 @@
     </div>
   </section>
 
-  <!-- ⑦ TEST GRATUIT -->
+  <!-- TEST GRATUIT -->
   <section id="test" class="section section--ivory">
     <div class="container">
       <div class="test-layout">
@@ -998,15 +1104,17 @@
           <h3>Lancer un test de 15 jours</h3>
           <p>Mise en place rapide sur un périmètre limité. Aucune intégration complexe requise. Un premier regard objectif sur vos flux d'appels.</p>
           <a href="https://calendly.com/adeveyrac/20min?month=2026-05" class="btn btn--gold" target="_blank" rel="noopener noreferrer">Lancer un test gratuit</a>
-          <p class="test-micro">Sans engagement. Mise en place rapide sur un périmètre limité.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ⑧ FINAL -->
+  <!-- FINAL -->
   <section id="final" class="section section--sand">
     <div class="container">
+      <div class="final-image reveal">
+        <img src="https://asset.montecarlosbm.com/styles/widget_promo_short_image_webp/s3/media/orphea/hotel-de-paris-monaco-palace-5-etoiles-diamond-suite-garnier-celebrations-2023-010_3.jpg.webp?itok=leYp1aE2" alt="Hôtel de Paris — Suite Diamond Garnier, Monte-Carlo" loading="lazy" />
+      </div>
       <p class="eyebrow reveal" style="text-align:center;">Notre position</p>
       <div class="gold-line reveal" style="margin:20px auto 32px;"></div>
       <h2 class="reveal reveal-delay-1" style="max-width:640px; margin:0 auto; text-align:center;">
@@ -1037,13 +1145,11 @@
   </footer>
 
   <script>
-    // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
