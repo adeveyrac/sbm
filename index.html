@@ -822,11 +822,13 @@
       :root { --pad-x: 16px; }
       nav { padding: 10px var(--pad-x); }
       nav.scrolled { padding: 8px var(--pad-x); }
+      .nav-logo { gap: 8px; }
       .nav-logo img { height: 32px; }
       nav.scrolled .nav-logo img { height: 28px; }
-      .nav-logo-label { font-size: 0.65rem; padding-left: 10px; }
-      .nav-cta { padding: 7px 16px; font-size: 0.7rem; }
-      #hero { padding-top: 80px; min-height: auto; }
+      .nav-logo-label { font-size: 0.6rem; padding-left: 8px; line-height: 1.2; }
+      .nav-logo-label span { font-size: 0.5rem; }
+      .nav-cta { display: none; }
+      #hero { padding: 80px var(--pad-x); min-height: auto; }
       #hero::before { height: 50%; }
       .hero-content { padding-right: 0; }
       .hero-content h1 { font-size: 1.8rem; margin-bottom: 16px; }
